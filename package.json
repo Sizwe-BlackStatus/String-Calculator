@@ -1,0 +1,22 @@
+{
+  "name": "sizwezakhe-masemola-266-string-calculator",
+  "version": "1.0.0",
+  "description": "string-calculator (266)\r For raw project instructions see: https://raw.githubusercontent.com/Umuzi-org/tech-department/master/content/projects/tdd/string-calculator/_index.md",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Umuzi-org/Sizwezakhe-Masemola-266-string-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Umuzi-org/Sizwezakhe-Masemola-266-string-calculator/issues"
+  },
+  "homepage": "https://github.com/Umuzi-org/Sizwezakhe-Masemola-266-string-calculator#readme",
+  "dependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
