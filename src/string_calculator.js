@@ -3,7 +3,7 @@ function strArray(str) {
   let delimiter;
   if (/\n/g.test(str) == true && /\/\//g.test(str) == true) {
     delimiter = str.match(/(?<=\/\/).+(?=\n)/g).toString();
-    delimiter = delimiter.replace(/\[|\]/g, " ").trim().split("  ");
+    delimiter = delimiter.replace(/\[|\]/g, " ").trim();
     strArr = str.match(/(?<=\n).+/g).toString();
     for (let i = 0; i <= delimiter.length; i++) {
       strArr = strArr.split(delimiter[i]).toString();
@@ -12,10 +12,13 @@ function strArray(str) {
   } else {
     strArr = str.split(/[,\n]/g);
   }
-  console.log(strArr);
+  console.log(delimiter);
   return strArr;
 }
 function invalidInputCheck(str) {
+  if (str == "") {
+    return 0;
+  }
   if (str.match(/-\d/g)) {
     let negativeValues = str.match(/-\d/g);
     throw new Error(`negativeValues not allowed ${negativeValues}.`);
@@ -24,14 +27,16 @@ function invalidInputCheck(str) {
 function add(str) {
   let strInt = [];
   let strArr = strArray(str);
-  if (str == "") {
-    return 0;
-  }
+  let sum = 0
+  invalidInputCheck(str);
   for (let i = 0; i < strArr.length; i++) {
     strInt[i] = parseInt(strArr[i]);
     strInt = strInt.filter((num) => num < 1000);
   }
-  invalidInputCheck(str);
-  return strInt.reduce((accumulate, num) => accumulate + num, 0);
+  for (let i = 0; i < strInt.length; i++){
+    sum += strInt[i]
+  }
+  return sum
 }
+console.log(add("//;\n1000;1;2"))
 module.exports = add;
