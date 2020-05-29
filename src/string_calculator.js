@@ -12,31 +12,38 @@ function strArray(str) {
   } else {
     strArr = str.split(/[,\n]/g);
   }
-  console.log(delimiter);
   return strArr;
-}
-function invalidInputCheck(str) {
-  if (str == "") {
-    return 0;
-  }
-  if (str.match(/-\d/g)) {
-    let negativeValues = str.match(/-\d/g);
-    throw new Error(`negativeValues not allowed ${negativeValues}.`);
-  }
 }
 function add(str) {
   let strInt = [];
   let strArr = strArray(str);
-  let sum = 0
-  invalidInputCheck(str);
+  let sum = 0;
+  if (str == "") {
+    return 0;
+  }
   for (let i = 0; i < strArr.length; i++) {
     strInt[i] = parseInt(strArr[i]);
     strInt = strInt.filter((num) => num < 1000);
   }
-  for (let i = 0; i < strInt.length; i++){
-    sum += strInt[i]
+  for (let i = 0; i < strInt.length; i++) {
+    sum += strInt[i];
   }
-  return sum
+  stringValidation(str);
+  return sum;
 }
-console.log(add("//;\n1000;1;2"))
+function stringValidation(str) {
+  if (str.match(/-\d/g)) {
+    let negativeValues = str.match(/-\d/g);
+    throw new Error(`negativeValues not allowed ${negativeValues}.`);
+  }
+  if (/[^\d]+$/g.test(str) == true) {
+    throw new Error("ERROR: invalid input");
+  }
+  if (/(?:(?!\n)\s)/g.test(str)) {
+    throw new Error("ERROR: invalid input");
+  }
+  if (/.+(?=\/\/)/g.test(str)) {
+    throw new Error("ERROR: invalid input");
+  }
+}
 module.exports = add;
